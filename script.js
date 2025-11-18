@@ -1,57 +1,68 @@
+// Carregar dados do localStorage
 let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
 
-const form = document.getElementById("formNotas");
-const tabela = document.querySelector("#tabelaAlunos tbody");
+// Referências aos elementos
+const form = document.getElementById("formAluno");
+const tabela = document.querySelector("#tabela tbody");
 
+// Função para atualizar a tabela
 function atualizarTabela() {
     tabela.innerHTML = "";
 
     alunos.forEach(aluno => {
         const tr = document.createElement("tr");
 
-        const imgStatus = aluno.media >= 6 ? "aprovado.png" : "reprovado.png";
+        const situacao = aluno.media >= 6 ? "Aprovado" : "Reprovado";
+        const classe = aluno.media >= 6 ? "aprovado" : "reprovado";
 
         tr.innerHTML = `
-            <td><img src="img/aluno.png" width="45"></td>
             <td>${aluno.nome}</td>
-            <td>${aluno.n1}</td>
-            <td>${aluno.n2}</td>
+            <td>${aluno.nota1}</td>
+            <td>${aluno.nota2}</td>
             <td>${aluno.media.toFixed(1)}</td>
-            <td>
-                <img src="img/${imgStatus}" class="status-img">
-            </td>
+            <td class="${classe}">${situacao}</td>
         `;
 
         tabela.appendChild(tr);
     });
 }
 
+// Primeira atualização da tabela
 atualizarTabela();
 
-form.addEventListener("submit", function (e) {
+// Evento de envio do formulário
+form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
-    const n1 = parseFloat(document.getElementById("nota1").value);
-    const n2 = parseFloat(document.getElementById("nota2").value);
+    const nota1 = parseFloat(document.getElementById("nota1").value);
+    const nota2 = parseFloat(document.getElementById("nota2").value);
 
-    if (!nome || isNaN(n1) || isNaN(n2)) {
-        alert("Preencha todos os campos!");
+    // Validação de campos
+    if (!nome || isNaN(nota1) || isNaN(nota2)) {
+        alert("Preencha todos os campos corretamente!");
         return;
     }
 
-    const media = (n1 + n2) / 2;
+    // Calcular a média
+    const media = (nota1 + nota2) / 2;
 
     const aluno = {
-        nome,
-        n1,
-        n2,
-        media
+        nome: nome,
+        nota1: nota1,
+        nota2: nota2,
+        media: media
     };
 
+    // Adicionar o aluno à lista
     alunos.push(aluno);
+
+    // Armazenar dados no localStorage
     localStorage.setItem("alunos", JSON.stringify(alunos));
 
+    // Atualizar tabela
     atualizarTabela();
+
+    // Limpar os campos após o cadastro
     form.reset();
 });
