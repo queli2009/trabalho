@@ -1,116 +1,115 @@
-/* ======== CONFIGURAÇÕES GERAIS ======== */
+/* ======= Estilo Geral ======= */
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #eaeef3;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f4f8;
 }
 
-/* ======== TOPO ======== */
 header {
-    background: #4c6ef5;
+    background: #1e40af;
     color: white;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
 }
 
-header .logo {
-    width: 60px;
+header h1 {
+    margin: 0;
 }
 
-/* ======== FORMULÁRIO ======== */
-.form-container {
-    background: white;
+/* ======= Formulário ======= */
+.form-section {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
     width: 90%;
-    max-width: 650px;
-    padding: 25px;
-    margin: 25px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h2 {
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-label {
+form label {
     display: block;
+    margin: 10px 0 5px;
     font-weight: bold;
 }
 
-input {
+form input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    border: 1px solid #aaa;
-    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #1e40af;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
     font-size: 16px;
 }
 
-.btn {
-    width: 100%;
-    background: #4c6ef5;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.3s;
+form button:hover {
+    background-color: #3b5bdb;
 }
 
-.btn:hover {
-    background: #3b5bdb;
-}
-
-/* ======== TABELA ======== */
-.table-container {
-    width: 95%;
-    margin: auto;
-    margin-bottom: 50px;
+/* ======= Tabela ======= */
+.table-section {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 900px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 thead {
-    background: #4c6ef5;
+    background: #1e40af;
     color: white;
 }
 
 th, td {
-    padding: 14px;
+    padding: 12px;
     text-align: center;
+    border-bottom: 1px solid #ccc;
 }
 
-tbody tr:nth-child(even) {
-    background: #f3f3f3;
+tr:nth-child(even) {
+    background: #f8f8f8;
 }
 
-/* Situação com imagens */
-.status-img {
-    width: 40px;
+/* ======= Situação de Aprovação/Reprovação ======= */
+.aprovado {
+    background: #d4edda;
+    color: #155724;
 }
 
-/* ======== RESPONSIVO ======== */
+.reprovado {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ======= Responsividade ======= */
 @media (max-width: 600px) {
-    table {
-        font-size: 13px;
+    form input, form button {
+        font-size: 14px;
     }
-    .status-img {
-        width: 30px;
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
     }
 }
