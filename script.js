@@ -1,24 +1,24 @@
-// Carregar registros do localStorage
 let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
 
-// Pegando elementos
 const form = document.getElementById("formNotas");
 const tabela = document.querySelector("#tabelaAlunos tbody");
 
-// Função para atualizar tabela
 function atualizarTabela() {
     tabela.innerHTML = "";
 
     alunos.forEach(aluno => {
         const tr = document.createElement("tr");
 
+        const imgStatus = aluno.media >= 6 ? "aprovado.png" : "reprovado.png";
+
         tr.innerHTML = `
+            <td><img src="img/aluno.png" width="45"></td>
             <td>${aluno.nome}</td>
             <td>${aluno.n1}</td>
             <td>${aluno.n2}</td>
             <td>${aluno.media.toFixed(1)}</td>
-            <td class="${aluno.media >= 6 ? "aprovado" : "reprovado"}">
-                ${aluno.media >= 6 ? "Aprovado" : "Reprovado"}
+            <td>
+                <img src="img/${imgStatus}" class="status-img">
             </td>
         `;
 
@@ -26,40 +26,32 @@ function atualizarTabela() {
     });
 }
 
-// Primeiro carregamento
 atualizarTabela();
 
-// Evento de cadastro
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
-    const nota1 = parseFloat(document.getElementById("nota1").value);
-    const nota2 = parseFloat(document.getElementById("nota2").value);
+    const n1 = parseFloat(document.getElementById("nota1").value);
+    const n2 = parseFloat(document.getElementById("nota2").value);
 
-    if (!nome || isNaN(nota1) || isNaN(nota2)) {
-        alert("Preencha todos os campos corretamente!");
+    if (!nome || isNaN(n1) || isNaN(n2)) {
+        alert("Preencha todos os campos!");
         return;
     }
 
-    const media = (nota1 + nota2) / 2;
+    const media = (n1 + n2) / 2;
 
-    // Criar objeto aluno
-    const novoAluno = {
-        nome: nome,
-        n1: nota1,
-        n2: nota2,
-        media: media
+    const aluno = {
+        nome,
+        n1,
+        n2,
+        media
     };
 
-    alunos.push(novoAluno);
-
-    // salvar no localStorage
+    alunos.push(aluno);
     localStorage.setItem("alunos", JSON.stringify(alunos));
 
-    // atualizar tabela
     atualizarTabela();
-
-    // limpar campos
     form.reset();
 });
