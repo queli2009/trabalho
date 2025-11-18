@@ -19,6 +19,7 @@ function atualizarTabela() {
             <td>${aluno.nome}</td>
             <td>${aluno.nota1}</td>
             <td>${aluno.nota2}</td>
+            <td>${aluno.nota3}</td>
             <td>${aluno.media.toFixed(1)}</td>
             <td class="${classe}">${situacao}</td>
         `;
@@ -37,6 +38,7 @@ form.addEventListener("submit", (e) => {
     const nome = document.getElementById("nome").value.trim();
     const nota1 = parseFloat(document.getElementById("nota1").value);
     const nota2 = parseFloat(document.getElementById("nota2").value);
+    const nota3 = parseFloat(document.getElementById("nota3").value);
 
     // Validação de campos
     if (!nome || isNaN(nota1) || isNaN(nota2)) {
@@ -45,12 +47,13 @@ form.addEventListener("submit", (e) => {
     }
 
     // Calcular a média
-    const media = (nota1 + nota2) / 2;
+    const media = (nota1 + nota2 + nota3) / 3;
 
     const aluno = {
         nome: nome,
         nota1: nota1,
         nota2: nota2,
+        nota3: nota3,
         media: media
     };
 
